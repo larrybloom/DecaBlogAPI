@@ -1,13 +1,12 @@
 ﻿using DevsTutorialCenterAPI.Models.DTOs;
 using DevsTutorialCenterAPI.Services.Abstractions;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DevsTutorialCenterAPI.Controllers
 {
     [ApiController]
     [Route("api/images")]
-  //  [Authorize]
+    //  [Authorize]
     public class ImageController : ControllerBase
     {
         private readonly IImageService _imageService;

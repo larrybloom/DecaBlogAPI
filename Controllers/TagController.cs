@@ -1,7 +1,6 @@
 using DevsTutorialCenterAPI.Models.DTOs;
 using DevsTutorialCenterAPI.Services.Abstractions;
 using DevsTutorialCenterAPI.Utilities;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DevsTutorialCenterAPI.Controllers;
@@ -18,7 +17,7 @@ public class TagController : ControllerBase
     }
 
     [HttpGet("get-all-tag")]
-   // [Authorize]
+    // [Authorize]
     public async Task<ActionResult<ResponseDto<IEnumerable<GetAllTagsDto>>>> GetAllTagAsync()
     {
         var tag = await _tagService.GetAllTagAsync();
@@ -32,9 +31,9 @@ public class TagController : ControllerBase
             IsSuccessful = true
         });
     }
-    
+
     [HttpPost]
-   // [Authorize(Roles = "ADMIN")]
+    // [Authorize(Roles = "ADMIN")]
     public async Task<ActionResult<ResponseDto<object>>> CreateTagAsync([FromBody] CreateTagDto createTagDto)
     {
         if (!ModelState.IsValid)
@@ -58,7 +57,7 @@ public class TagController : ControllerBase
             Message = "Ok",
             IsSuccessful = true
 
-        } );
+        });
 
     }
 
