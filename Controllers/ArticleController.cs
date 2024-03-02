@@ -1,11 +1,11 @@
-﻿using System.Net;
-using System.Security.Claims;
-using DevsTutorialCenterAPI.Data.Entities;
+﻿using DevsTutorialCenterAPI.Data.Entities;
 using DevsTutorialCenterAPI.Models.DTOs;
 using DevsTutorialCenterAPI.Services.Abstractions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
+using System.Security.Claims;
 
 namespace DevsTutorialCenterAPI.Controllers;
 
@@ -30,7 +30,7 @@ public class ArticleController : ControllerBase
         _reportArticleService = reportArticleService;
         _articleApprovalService = articleApprovalService;
     }
-    
+
     //[Authorize]
     [HttpPost("create-article")]
     public async Task<IActionResult> CreateArticle2([FromBody] CreateArticleDto2 model)
