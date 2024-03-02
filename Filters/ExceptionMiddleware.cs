@@ -1,6 +1,6 @@
-﻿using System.Net;
-using DevsTutorialCenterAPI.Models.DTOs;
+﻿using DevsTutorialCenterAPI.Models.DTOs;
 using Newtonsoft.Json;
+using System.Net;
 
 namespace DevsTutorialCenterAPI.Filters;
 
@@ -30,7 +30,7 @@ public class ExceptionMiddleware
             response.ContentType = "application/json";
             var errorResponse = new ResponseDto<object>
             {
-                
+
                 Data = null,
             };
             switch (error)
@@ -43,7 +43,7 @@ public class ExceptionMiddleware
                         e.Source);
                     response.StatusCode = (int)HttpStatusCode.Unauthorized;
                     errorResponse.Code = response.StatusCode;
-                    errorResponse.Errors = new []{new Error("UnauthorizedAccessException", e.Message)};
+                    errorResponse.Errors = new[] { new Error("UnauthorizedAccessException", e.Message) };
                     errorResponse.Message = e.StackTrace;
                     break;
                 case ArgumentOutOfRangeException e:
@@ -54,7 +54,7 @@ public class ExceptionMiddleware
                         e.ToString());
                     response.StatusCode = (int)HttpStatusCode.BadRequest;
                     errorResponse.Code = response.StatusCode;
-                    errorResponse.Errors = new []{new Error("ArgumentOutOfRangeException", e.Message)};
+                    errorResponse.Errors = new[] { new Error("ArgumentOutOfRangeException", e.Message) };
                     errorResponse.Message = e.Message;
                     break;
                 case ArgumentNullException e:
@@ -65,7 +65,7 @@ public class ExceptionMiddleware
                         e.ToString());
                     response.StatusCode = (int)HttpStatusCode.BadRequest;
                     errorResponse.Code = response.StatusCode;
-                    errorResponse.Errors = new []{new Error("ArgumentNullException", e.Message)};
+                    errorResponse.Errors = new[] { new Error("ArgumentNullException", e.Message) };
                     errorResponse.Message = e.Message;
                     break;
                 default:
@@ -77,7 +77,7 @@ public class ExceptionMiddleware
                         error.ToString());
                     response.StatusCode = (int)HttpStatusCode.InternalServerError;
                     errorResponse.Code = response.StatusCode;
-                    errorResponse.Errors = new []{new Error("UnauthorizedAccessException", error.Message)};
+                    errorResponse.Errors = new[] { new Error("UnauthorizedAccessException", error.Message) };
                     errorResponse.Message = _isProdEnv
                         ? "Internal Server Error."
                         : $"{error.Message}" +
