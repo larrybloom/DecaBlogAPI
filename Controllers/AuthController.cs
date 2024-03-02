@@ -37,7 +37,7 @@ public class AuthController : ControllerBase
 
         //Add Token to verify the email
         var user = _mapper.Map<AppUser>(registerResult.Data);
-        var appUrl =  $"{Request.Scheme}://{Request.Host}";
+        var appUrl = $"{Request.Scheme}://{Request.Host}";
         var confirmEmailEndpoint = $"{appUrl}/confirmemail";
         var confirmationEmailSent = await _authService.SendConfirmationEmailAsync2(user, confirmEmailEndpoint);
         return Ok(ResponseDto<object>.Success(registerResult.Data));
@@ -114,7 +114,7 @@ public class AuthController : ControllerBase
         if (email == null || token == null)
         {
             return BadRequest(new
-                { errorTitle = "Invalid Email or Token", errorMessage = "Email or token cannot be null" });
+            { errorTitle = "Invalid Email or Token", errorMessage = "Email or token cannot be null" });
         }
 
         // ensure that user exists
@@ -151,7 +151,7 @@ public class AuthController : ControllerBase
             return BadRequest(new { error = "Email does not exist" });
         }
 
-        var appUrl =  $"{Request.Scheme}://{Request.Host}";
+        var appUrl = $"{Request.Scheme}://{Request.Host}";
         var passwordResetEndpoint = $"{appUrl}/confirmemail";
         var passwordResetEmailSent =
             await _authService.SendPasswordResetEmailAsync(user, passwordResetEndpoint);
