@@ -11,7 +11,7 @@ public class Article : BaseEntity
     public string? PublicId { get; set; }
     public string? ReadTime { get; set; }
     public bool IsDeleted { get; set; }
-    
+
     public AppUser Author { get; set; }
     public ArticleTag Tag { get; set; }
 }
