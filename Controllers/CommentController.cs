@@ -1,10 +1,9 @@
-﻿using System.Net;
-using DevsTutorialCenterAPI.Data.Entities;
+﻿using DevsTutorialCenterAPI.Data.Entities;
 using DevsTutorialCenterAPI.Models.DTOs;
 using DevsTutorialCenterAPI.Services.Abstractions;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace DevsTutorialCenterAPI.Controllers;
 
@@ -72,7 +71,7 @@ public class CommentController : ControllerBase
     }
 
     [HttpPut("update-comment/{commentId}")]
-    public async Task<IActionResult> UpdateComment( string commentId, [FromBody] CommentDto commentDto)
+    public async Task<IActionResult> UpdateComment(string commentId, [FromBody] CommentDto commentDto)
     {
         var response = new ResponseDto<UpdateCommentDto>();
 
@@ -90,7 +89,7 @@ public class CommentController : ControllerBase
 
         try
         {
-            var updateComment = await _commentService.UpdateCommentAsync(commentId,user.Id, commentDto);
+            var updateComment = await _commentService.UpdateCommentAsync(commentId, user.Id, commentDto);
             if (updateComment == null)
             {
                 response.Code = 400;
@@ -166,7 +165,7 @@ public class CommentController : ControllerBase
         try
         {
             var comments = await _commentService.GetCommentsByArticle(articleId);
-            
+
             response.Code = (int)HttpStatusCode.OK;
             response.Message = "Comments found";
             response.Data = comments;
@@ -237,7 +236,7 @@ public class CommentController : ControllerBase
         try
         {
             var like = await _commentService.LikeComment(commentId, user.Id);
-           
+
 
             response.Code = 200;
             response.Message = "Comment liked";
